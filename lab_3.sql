@@ -85,4 +85,20 @@ select transactionId,
    when amount >= 300 then "Medium Transactions"
    else "Low Transactions" end as "Transaction Category" from transactions;
    
+select accountId, balance,
+rank()over (order by balance desc)as balanceRank
+From Accounts;
+
+select TransactionId,
+amount,
+sum(amount) over (order by transactionDate) as RunningTotal
+from Transactions;
+
+select TransactionId,
+amount,
+avg(amount) over () as AverageTransactions
+from Transactions;
+
+select CustomerId, Balance,
+rank() over (order by balance desc ) as balanceRank from accounts;
 
